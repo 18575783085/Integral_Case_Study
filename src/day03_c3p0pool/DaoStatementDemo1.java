@@ -39,6 +39,15 @@ public class DaoStatementDemo1 {
 	}
 	
 	/**
+	 * statement的优缺点：
+	 * 优点：可以包含结构不同的 SQL 语句
+	 * 缺点:
+	 * 	1.不能防止 SQL 注入攻击
+	 * 	2.不能预编译机制，效率低下
+	 * 	3.如果发送的 SQL 语句主干部分相同，主干部分每次都需要写
+	 */
+	
+	/**
 	 * 增加一条数据
 	 */
 	public static void insert(Emp emp){

@@ -21,6 +21,35 @@ import java.util.List;
  *
  */
 public class DaoPreparedStatementDemo1 {
+	
+	public static void main(String[] args) {
+		Emp emp = new Emp(2, "李四", "男", Date.valueOf("2017-10-12"), 7777.9);
+		insert(emp);
+		insertAll();
+		
+		deleteById(2);
+		deleteAll();
+		
+		updateById(emp);
+		
+		selectById(2);
+		selectPageSize(1, 10);
+		selectAll();
+	}
+	
+	/**
+	 *PreparedStatement的优缺点：
+	 *	优点：
+	 *		1.可以防止 SQL 注入攻击
+	 *		2.采用预编译机制，效率高
+	 *		3.如果发送的 SQL 语句主干部分相同，主干部分只需要写一次，每次发送的只是参数部分
+	 *	
+	 *	缺点：
+	 *		1.包含的 SQL 语句的主干部分必须相同 
+	 */
+	
+	
+	
 	/**
 	 * 增加一条数据
 	 */
@@ -95,6 +124,9 @@ public class DaoPreparedStatementDemo1 {
 	
 	/**
 	 * 防 SQL 注入
+	 * SQL 注入攻击的原理：
+	 * 	由于 jdbc 程序在执行的过程中 sql 语句在拼装时使用了由页面传入参数，如果用户恶意传入一些
+	 * sql 中的特殊关键字，会导致 sql 语句意义发生变化，这种攻击方式就叫做 sql 注入。
 	 */
 	
 	/**
