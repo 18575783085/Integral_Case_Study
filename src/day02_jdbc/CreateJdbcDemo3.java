@@ -1,9 +1,9 @@
 package day02_jdbc;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -46,7 +46,7 @@ public class CreateJdbcDemo3 {
 		
 		try {
 			//2.加载文件
-			p.load(new InputStreamReader(new FileInputStream("db.properties")));
+			p.load(new FileInputStream(new File("db.properties")));
 			
 			//3.获取数据库参数
 			String dirver = p.getProperty("driver");
