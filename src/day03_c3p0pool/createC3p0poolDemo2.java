@@ -1,6 +1,5 @@
 package day03_c3p0pool;
 
-import java.beans.PropertyVetoException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -10,41 +9,28 @@ import java.sql.Statement;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 /**
- * 利用c3p0---设置数据库连接参数
+ * 创建c3p0实例，直接读取c3p0-config.xml/c3p0.properties配置文件
+ * @author Administrator
+ *
  */
-public class createC3p0poolDemo1 {
+public class createC3p0poolDemo2 {
 	
 	public static void main(String[] args) {
 		createConnection();
-		createTable();
 		insert();
 		update();
 		delete();
 		select();
 	}
 	
-	private static ComboPooledDataSource cpds;
-	
-	static{
-		//1.创建连接池对象
-		cpds = new ComboPooledDataSource();
-		
-		try {
-			//2.设置数据库参数
-			cpds.setDriverClass("com.mysql.jdbc.Driver");
-			cpds.setJdbcUrl("jdbc:mysql://localhost:3306/db10");
-			cpds.setUser("root");
-			cpds.setPassword("root");
-			
-			
-		} catch (PropertyVetoException e) {
-			e.printStackTrace();
-			throw new RuntimeException("注册数据库驱动失败", e);
-		}
-	}
 	
 	/**
-	 * 创建数据库连接池连接
+	 * 创建c3p0连接池对象
+	 */
+	private static ComboPooledDataSource cpds = new ComboPooledDataSource();
+	
+	/**
+	 * 创建获取数据库连接池
 	 * @throws SQLException 
 	 */
 	public static Connection getConnection() throws SQLException{
@@ -52,7 +38,7 @@ public class createC3p0poolDemo1 {
 	}
 	
 	/**
-	 * 关闭资源，归还数据库连接
+	 * 归还数据库连接
 	 */
 	public static void close(Connection conn,Statement statement,ResultSet rs){
 		if(rs != null){
@@ -60,6 +46,8 @@ public class createC3p0poolDemo1 {
 				rs.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
+			} finally {
+				rs = null;
 			}
 		}
 		
@@ -68,8 +56,11 @@ public class createC3p0poolDemo1 {
 				statement.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
+			} finally {
+				statement = null;
 			}
 		}
+		
 		if(conn != null){
 			try {
 				conn.close();
@@ -80,22 +71,21 @@ public class createC3p0poolDemo1 {
 		}
 	}
 	
-	
 	/**
-	 * 测试数据库连接
+	 * 测试连接
 	 */
 	public static void createConnection(){
 		Connection conn = null;
 		try {
-			conn = createC3p0poolDemo1.getConnection();
+			conn = createC3p0poolDemo2.getConnection();
 			
 			System.out.println(conn);
 			System.out.println("连接成功");
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("获取数据库连接失败", e);
+			throw new RuntimeException("获取连接失败", e);
 		} finally {
-			createC3p0poolDemo1.close(conn, null, null);
+			createC3p0poolDemo2.close(conn, null, null);
 		}
 	}
 	
@@ -110,14 +100,13 @@ public class createC3p0poolDemo1 {
 		Statement statement = null;
 		try {
 			//1.创建数据库连接
-			conn = createC3p0poolDemo1.getConnection();
+			conn = createC3p0poolDemo2.getConnection();
 			
 			//2.创建sql传输器
 			statement = conn.createStatement();
 			
 			//3.创建sql语句
-			String createtable = "create table jdbcdemo(" 
-					+ "id number primary key auto_increment,"
+			String createtable = "create table jdbcdemo(" + "id number primary key auto_increment,"
 					+ "name varchar(50) unique" 
 					+ "gender char(1) not null" 
 					+ "birthday date," 
@@ -133,7 +122,7 @@ public class createC3p0poolDemo1 {
 			throw new RuntimeException("获取数据库连接失败", e);
 		} finally {
 			//5.关闭资源
-			createC3p0poolDemo1.close(conn, statement, null);
+			createC3p0poolDemo2.close(conn, statement, null);
 		}
 	}
 	
@@ -145,7 +134,7 @@ public class createC3p0poolDemo1 {
 		Connection conn = null;
 		Statement statement = null;
 		try {
-			conn = createC3p0poolDemo1.getConnection();
+			conn = createC3p0poolDemo2.getConnection();
 			
 			statement = conn.createStatement();
 			
@@ -161,7 +150,7 @@ public class createC3p0poolDemo1 {
 			e.printStackTrace();
 			throw new RuntimeException("获取连接失败", e);
 		} finally {
-			createC3p0poolDemo1.close(conn, statement, null);
+			createC3p0poolDemo2.close(conn, statement, null);
 		}
 	}
 	
@@ -173,7 +162,7 @@ public class createC3p0poolDemo1 {
 		Connection conn = null;
 		Statement statement = null;
 		try {
-			conn = createC3p0poolDemo1.getConnection();
+			conn = createC3p0poolDemo2.getConnection();
 			
 			statement = conn.createStatement();
 			
@@ -188,7 +177,7 @@ public class createC3p0poolDemo1 {
 			e.printStackTrace();
 			throw new RuntimeException("获取连接失败", e);
 		} finally {
-			createC3p0poolDemo1.close(conn, statement, null);
+			createC3p0poolDemo2.close(conn, statement, null);
 		}
 	}
 	/**
@@ -198,7 +187,7 @@ public class createC3p0poolDemo1 {
 		Connection conn = null;
 		Statement statement = null;
 		try {
-			conn = createC3p0poolDemo1.getConnection();
+			conn = createC3p0poolDemo2.getConnection();
 			
 			statement = conn.createStatement();
 			
@@ -211,7 +200,7 @@ public class createC3p0poolDemo1 {
 			e.printStackTrace();
 			throw new RuntimeException("获取连接失败", e);
 		} finally {
-			createC3p0poolDemo1.close(conn, statement, null);
+			createC3p0poolDemo2.close(conn, statement, null);
 		}
 	}
 	/**
@@ -222,7 +211,7 @@ public class createC3p0poolDemo1 {
 		Statement statement = null;
 		ResultSet rs = null;
 		try {
-			conn = createC3p0poolDemo1.getConnection();
+			conn = createC3p0poolDemo2.getConnection();
 			
 			statement = conn.createStatement();
 			
@@ -243,7 +232,8 @@ public class createC3p0poolDemo1 {
 			e.printStackTrace();
 			throw new RuntimeException("获取连接失败", e);
 		} finally {
-			createC3p0poolDemo1.close(conn, statement, null);
+			createC3p0poolDemo2.close(conn, statement, null);
 		}
 	}
 }
+

@@ -287,7 +287,7 @@ public class CreateJdbcDemo3 {
 				Date birthday = rs.getDate("birthday");
 				Double salary = rs.getDouble("salary");
 				
-				System.out.println(id+","+name+","+birthday+","+salary);
+				System.out.println(id+","+name+","+gender+","+birthday+","+salary);
 			}
 			
 		} catch (SQLException e) {
