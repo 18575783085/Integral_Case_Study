@@ -3,6 +3,17 @@
     xmlns="http://java.sun.com/xml/ns/javaee"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+  
+  <!-- 为整个web应用配置公共的参数 -->
+  <context-param>
+  	<param-name>param1</param-name>
+  	<param-value>value1</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>param2</param-name>
+  	<param-value>value2</param-value>
+  </context-param>
+  
   <servlet>
     <servlet-name>ServletConfigDemo1</servlet-name>
     <servlet-class>day11_ServletConfig.ServletConfigDemo1</servlet-class>
@@ -16,10 +27,56 @@
     	<param-value>jdbc:mysql://localhost:3306/mydb5</param-value>
     </init-param>
   </servlet>
+  <servlet>
+    <servlet-name>ServletConfigDemo2</servlet-name>
+    <servlet-class>day11_ServletConfig.ServletConfigDemo2</servlet-class>
+    
+    <!-- 初始化参数 -->
+    <init-param>
+    	<param-name>user</param-name>
+    	<param-value>root</param-value>
+    </init-param>
+    <init-param>
+    	<param-name>password</param-name>
+    	<param-value>root</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <servlet-name>ServletContextDemo1</servlet-name>
+    <servlet-class>day11_ServletConfig.ServletContextDemo1</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ServletContextDemo2</servlet-name>
+    <servlet-class>day11_ServletConfig.ServletContextDemo2</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ServletContextDemo3</servlet-name>
+    <servlet-class>day11_ServletConfig.ServletContextDemo3</servlet-class>
+  </servlet>
+
+
+
+
 
   <servlet-mapping>
     <servlet-name>ServletConfigDemo1</servlet-name>
     <url-pattern>/servlet/ServletConfigDemo1</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ServletConfigDemo2</servlet-name>
+    <url-pattern>/servlet/ServletConfigDemo2</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ServletContextDemo1</servlet-name>
+    <url-pattern>/servlet/ServletContextDemo1</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ServletContextDemo2</servlet-name>
+    <url-pattern>/servlet/ServletContextDemo2</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ServletContextDemo3</servlet-name>
+    <url-pattern>/servlet/ServletContextDemo3</url-pattern>
   </servlet-mapping>
 
 </web-app>

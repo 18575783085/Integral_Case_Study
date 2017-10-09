@@ -3,7 +3,7 @@
     <wb-module deploy-name="Integral_Case_Study-0.0.1-SNAPSHOT">
         <wb-resource deploy-path="/" source-path="/WebRoot" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="Integral_Case_Study"/>
         <property name="java-output-path" value="/Integral_Case_Study/WebRoot/WEB-INF/classes"/>
+        <property name="context-root" value="Integral_Case_Study"/>
     </wb-module>
 </project-modules>
