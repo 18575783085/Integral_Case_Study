@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0"
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+  <servlet>
+    <servlet-name>ServletConfigDemo1</servlet-name>
+    <servlet-class>day11_ServletConfig.ServletConfigDemo1</servlet-class>
+    <!-- 初始化参数 -->
+    <init-param>
+    	<param-name>driverClass</param-name>
+    	<param-value>com.mysql.jdbc.driver</param-value>
+    </init-param>
+    <init-param>
+    	<param-name>jdbcUrl</param-name>
+    	<param-value>jdbc:mysql://localhost:3306/mydb5</param-value>
+    </init-param>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ServletConfigDemo1</servlet-name>
+    <url-pattern>/servlet/ServletConfigDemo1</url-pattern>
+  </servlet-mapping>
+
+</web-app>
